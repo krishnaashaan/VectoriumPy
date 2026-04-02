@@ -1,0 +1,18 @@
+[project]
+name = "VectoriumPy"
+version = "0.0.2"
+description = "A python library containing various functions for physics"
+authors = [
+    { name = "Physics & Coding" }
+]
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

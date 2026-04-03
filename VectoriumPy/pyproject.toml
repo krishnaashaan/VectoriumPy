@@ -1,5 +1,5 @@
 [project]
-name = "VectoriumPy"
+name = "vectoriumPy"
 version = "0.0.2"
 description = "A python library containing various functions for physics"
 authors = [

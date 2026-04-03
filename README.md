@@ -73,7 +73,7 @@ See [LICENSE](LICENSE) for license terms.
 
 This project contains a set of focused modules. Brief descriptions of the main files:
 
-- [src/VectoriumPy/Kinematics/motion.py](src/VectoriumPy/Kinematics/motion.py): Common kinematics helpers (velocity, acceleration, displacement calculations).
+- [VectoriumPy/src/vectoriumPy/Kinematics/motion.py](VectoriumPy/src/vectoriumPy/Kinematics/motion.py): Common kinematics helpers (velocity, acceleration, displacement calculations).
 - [src/VectoriumPy/Kinematics/projectile_motion.py](src/VectoriumPy/Kinematics/projectile_motion.py): Projectile motion utilities (range, time of flight, max height).
 - [src/VectoriumPy/Force/Force.py](src/VectoriumPy/Force/Force.py): Force calculations (gravitational force, friction, centripetal force).
 - [src/VectoriumPy/Energy/energy.py](src/VectoriumPy/Energy/energy.py): Energy-related helpers (kinetic, potential, mechanical energy, work, power).

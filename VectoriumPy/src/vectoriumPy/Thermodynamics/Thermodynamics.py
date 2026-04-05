@@ -17,7 +17,7 @@ def first_law_thermodynamics(U, Q, W):
    Parameters
    ----------
    U : float or str
-      Internal energy (use "?" for unknown)
+      Internal energy 
    Q : float or str
       Heat added to the system
    W : float or str
@@ -28,17 +28,17 @@ def first_law_thermodynamics(U, Q, W):
    float
       The computed unknown value.
    """
-   known = [U, Q, W].count("?")
+   known = [U, Q, W].count(None)
    if known > 1:
       raise ValueError("At least two parameters must be provided.")
 
-   if U == "?":
+   if U is None:
       U = Q - W
       return U
-   if Q == "?":
+   if Q is None:
       Q = U + W
       return Q
-   if W == "?":
+   if W is None:
       W = Q - U
       return W
  
@@ -48,7 +48,7 @@ def entropy(Q, T, ΔS):
    Parameters
    ----------
    Q : float or str
-      Heat added (use "?" for unknown)
+      Heat added (use None for unknown)
    T : float or str
       Absolute temperature in K
    ΔS : float or str
@@ -59,20 +59,20 @@ def entropy(Q, T, ΔS):
    float
       Computed unknown value.
    """
-   known_missing = [Q, T, ΔS].count("?")
+   known_missing = [Q, T, ΔS].count(None)
    if known_missing > 1:
       raise ValueError("At least two parameters must be provided.")
 
-   if T != '?' and T <= 0:
+   if T != None and T <= 0:
       raise ValueError("Temperature must be greater than zero.")
 
-   if ΔS == "?":
+   if ΔS is None:
       ΔS = Q / T
       return ΔS
-   if Q == "?":
+   if Q is None:
       Q = ΔS * T
       return Q
-   if T == "?":
+   if T is None:
       T = Q / ΔS
       return T
 
@@ -82,7 +82,7 @@ def enthalpy(H, U, P, V):
    Parameters
    ----------
    H : float or str
-      Enthalpy (use "?" for unknown)
+      Enthalpy (use None for unknown)
    U : float or str
       Internal energy
    P : float or str
@@ -95,20 +95,20 @@ def enthalpy(H, U, P, V):
    float
       Computed unknown value.
    """
-   known = [H, U, P, V].count("?")
+   known = [H, U, P, V].count(None)
    if known > 1:
       raise ValueError("At least two parameters must be provided.")
 
-   if H == "?":
+   if H is None:
       H = U + P * V
       return H
-   if U == "?":
+   if U is None:
       U = H - P * V
       return U
-   if P == "?":
+   if P is None:
       P = (H - U) / V
       return P
-   if V == "?":
+   if V is None:
       V = (H - U) / P
       return V
  
@@ -131,22 +131,22 @@ def Gibbs_free_energy(G, H, T, S):
       float
             Computed unknown value.
       """
-      known = [G, H, T, S].count("?")
+      known = [G, H, T, S].count(None)
       if known > 1:
             raise ValueError("At least two parameters must be provided.")
-      if T != '?' and T <= 0:
+      if T != None and T <= 0:
             raise ValueError("Temperature must be greater than zero.")
 
-      if G == "?":
+      if G is None:
             G = H - T * S
             return G
-      if H == "?":
+      if H is None:
             H = G + T * S
             return H
-      if T == "?":
+      if T is None:
             T = (H - G) / S
             return T
-      if S == "?":
+      if S is None:
             S = (H - G) / T
             return S
 
@@ -169,58 +169,58 @@ def Helmholtz_free_energy(A, U, T, S):
    float
       Computed unknown value.
    """
-   known = [A, U, T, S].count("?")
+   known = [A, U, T, S].count(None)
    if known > 1:
       raise ValueError("At least two parameters must be provided.")
-   if T !='?' and T <= 0:
+   if T !=None and T <= 0:
       raise ValueError("Temperature must be greater than zero.")
 
-   if A == "?":
+   if A is None:
       A = U - T * S
       return A
-   if U == "?":
+   if U is None:
       U = A + T * S
       return U
-   if T == "?":
+   if T is None:
       T = (U - A) / S
       return T
-   if S == "?":
+   if S is None:
       S = (U - A) / T
       return S
 
 def ideal_gas_law(P, V, n, T, R):
-   """Ideal gas law PV = nRT; solve for the unknown marked with "?".
+   """Ideal gas law PV = nRT; solve for the unknown marked with None.
 
    Parameters
    ----------
    P, V, n, T, R : float or str
-      Use "?" for the unknown parameter.
+      Use None for the unknown parameter.
 
    Returns
    -------
    float
       Computed unknown value.
    """
-   known = [P, V, n, T, R].count("?")
+   known = [P, V, n, T, R].count(None)
    if known > 1:
       raise ValueError("At least two parameters must be provided.")
 
-   if T != '?' and T <= 0:
+   if T != None and T <= 0:
       raise ValueError("Temperature must be greater than zero.")
 
-   if P == "?":
+   if P is None:
       P = n * R * T / V
       return P
-   if V == "?":
+   if V is None:
       V = n * R * T / P
       return V
-   if n == "?":
+   if n is None:
       n = P * V / (R * T)
       return n
-   if R == "?":
+   if R is None:
       R = P * V / (n * T)
       return R
-   if T == "?":
+   if T is None:
       T = P * V / (n * R)
       return T
 def Latent_Heat(Q,m,L):
@@ -228,17 +228,17 @@ def Latent_Heat(Q,m,L):
    calculates the total thermal energy absorbed or released during a phase change at a constant temperature.
    Q = m*L
    """
-   knows=[Q,m,L].count('?')
+   knows=[Q,m,L].count(None)
    if knows >1:
       raise ValueError('Provide at least 2 values ')
    
-   if Q == '?':
+   if Q is None:
        Q = m*L
        return Q   
-   elif m =='?':
+   elif m ==None:
       m = Q/L
       return m
-   elif L == '?':
+   elif L is None:
       L = Q/m
       return L
   

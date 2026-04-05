@@ -14,13 +14,13 @@ def projectile_motion(u,θ,t,g=9.81):
     Returns:
     tuple: A tuple containing the horizontal and vertical components of projectile motion.
     """
-    import math
+    import numpy as np
     # Convert angle from degrees to radians
-    θ_rad = math.radians(θ)
+    θ_rad = np.radians(θ)
 
     # Calculate horizontal and vertical components
-    horizontal_component = u * math.cos(θ_rad) * t
-    vertical_component = u * math.sin(θ_rad) * t - 0.5 * g * t**2
+    horizontal_component = u * np.cos(θ_rad) * t
+    vertical_component = u * np.sin(θ_rad) * t - 0.5 * g * t**2
 
     return horizontal_component, vertical_component
     # Calculate displacement and time of flight

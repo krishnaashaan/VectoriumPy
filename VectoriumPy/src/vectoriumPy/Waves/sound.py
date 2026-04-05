@@ -16,12 +16,14 @@ def sound_wave(v,f,λ):
     if known>1:
         raise ValueError('Please provide values for at least three of the parameters.')
     if v is None:
-        return f*λ
+        v = f*λ
+        return v
     elif f is None:
-        return v/λ
+        f = v/λ
+        return f
     elif λ is None:
-        return v/f
-def Doppler_effect():
-    pass
+        λ = v/f
+        return λ
+
   # Fuction Will be added in the future
     

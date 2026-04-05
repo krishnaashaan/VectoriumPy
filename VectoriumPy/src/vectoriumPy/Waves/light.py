@@ -16,11 +16,14 @@ def light_wave(v,f,λ):
     if unknown_count > 1:
         raise ValueError('Please provide values for at least two of the parameters.')
     if v is None:
-        return f*λ
+        v = f*λ
+        return v
     elif f is None:
-        return v/λ
+        f = v/λ
+        return f
     elif λ is None:
-        return v/f
+        λ = v/f
+        return λ
 def Doppler_effect(Fs,Fo,v,v_s):
     """
     Calculate the observed frequency (F) of a sound wave using the Doppler effect formula.
@@ -52,14 +55,13 @@ def Snell_law(n1,n2,θ1,θ2):
     Returns:
     float: The refractive index (n)
     """
-    import math
-
+    import numpy as np
     none_count = [n1, n2, θ1, θ2].count(None)
     if none_count > 2:
         raise ValueError('Please provide values for at least two of the parameters.')
 
     def to_rad(angle):
-        return None if angle is None else math.radians(angle)
+        return None if angle is None else np.radians(angle)
 
     # Both refractive indices missing but angles present -> return ratio sin(θ1)/sin(θ2)
     if n1 is None and n2 is None:
@@ -67,7 +69,7 @@ def Snell_law(n1,n2,θ1,θ2):
         θ2r = to_rad(θ2)
         if θ1r is None or θ2r is None:
             raise ValueError('Insufficient known parameters to compute refractive indices.')
-        return math.sin(θ1r) / math.sin(θ2r)
+        return np.sin(θ1r) / np.sin(θ2r)
 
     # Compute n1 when missing
     if n1 is None:
@@ -75,32 +77,32 @@ def Snell_law(n1,n2,θ1,θ2):
         θ2r = to_rad(θ2)
         if n2 is None or θ1r is None or θ2r is None:
             raise ValueError('Insufficient known parameters to compute n1.')
-        return n2 * math.sin(θ2r) / math.sin(θ1r)
+        return n2 * np.sin(θ2r) / np.sin(θ1r)
 
     # Compute n2 when missing
-    elif n2 is None:
+    if n2 is None:
         θ1r = to_rad(θ1)
         θ2r = to_rad(θ2)
         if θ1r is None or θ2r is None:
             raise ValueError('Insufficient known parameters to compute n2.')
-        return n1 * math.sin(θ1r) / math.sin(θ2r)
+        return n1 * np.sin(θ1r) / np.sin(θ2r)
 
     # Compute missing angle(s)
-    elif θ1 is None:
+    if θ1 is None:
         θ2r = to_rad(θ2)
         if θ2r is None:
             raise ValueError('Insufficient known parameters to compute θ1.')
         if n1 == 0:
             raise ValueError('Invalid refractive index n1.')
-        return math.degrees(math.asin((n2 * math.sin(θ2r)) / n1))
+        return np.degrees(np.asin((n2 * np.sin(θ2r)) / n1))
 
-    elif θ2 is None:
+    if θ2 is None:
         θ1r = to_rad(θ1)
-        if θ1r is None:
+        if θ1r == None:
             raise ValueError('Insufficient known parameters to compute θ2.')
         if n2 == 0:
             raise ValueError('Invalid refractive index n2.')
-        return math.degrees(math.asin((n1 * math.sin(θ1r)) / n2))
+        return np.degrees(np.asin((n1 * np.sin(θ1r)) / n2))
 
     # If both refractive indices provided, return them
     return n1, n2

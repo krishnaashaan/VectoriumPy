@@ -1,23 +1,22 @@
-"""
-Kinematics helper functions for VectoriumPy.
-All functions accept None as the unknown placeholder (pythonic).
-"""
+## Module for motion in vectoriumPy
 
-def motion(u, v, a, t, s):
-    """Compute one missing value among u, v, a, t, s for linear motion.
+def motion(u,v,a,t,s):
 
-    Relations used:
-    v = u + a*t
-    s = u*t + 0.5*a*t**2
-
-    Provide exactly one argument as None to compute it. If more than one
-    is None a ValueError is raised.
     """
-    params = [u, v, a, t, s]
-    unknowns = params.count(None)
-    if unknowns > 1:
-        raise ValueError("Please provide values for at least three of the parameters (u, v, a, t, s).")
+    Function to calculate the motion of an object given its initial velocity, final velocity, acceleration, and time.
 
+    Parameters:
+    u (float): Initial velocity (m/s)
+    v (float): Final velocity (m/s)
+    a (float): Acceleration (m/s^2)
+    t (float): Time (s)
+
+    Returns:
+    dict: A dictionary containing the calculated values for displacement, average velocity, and final velocity.
+    """
+    values = [u, v, a, t,s].count(None)
+    if values> 1:
+        raise ValueError("Please provide values for at least three of the parameters (u, v, a, t).")
     if v is None:
         return u + a * t
     elif u is None:
@@ -27,104 +26,138 @@ def motion(u, v, a, t, s):
     elif t is None:
         return (v - u) / a
     elif s is None:
-        return u * t + 0.5 * a * t ** 2
+        s= u*t + 0.5*a*t**2
+        return s
 
-    # If nothing is None, return displacement by default
-    return s
-
-
-def avg_velocity(u, v):
-    """Average velocity (u+v)/2. Both u and v must be provided."""
+def avg_velocity(u,v):
+    """
+    Function to calculate the average velocity of an object given its initial and final velocities.
+    """
     if u is None or v is None:
         raise ValueError("Please provide values for both initial velocity (u) and final velocity (v).")
     return (u + v) / 2
 
-
-def angular_velocity(theta, t, omega):
-    """Compute one of angular displacement (theta in degrees), time t, or angular velocity omega (deg/s)."""
-    values = [theta, t, omega]
-    if values.count(None) > 1:
-        raise ValueError("Please provide values for two of the angular parameters.")
-    elif omega is None:
-        return theta / t
-    elif theta is None:
-        return omega * t
-    elif t is None:
-        return theta / omega
-    return omega
-
-
-def angular_acceleration(omega, t, alpha):
-    """Compute one of angular velocity (omega), time t, or angular acceleration alpha.
-
-    Relation: alpha = omega / t
+def angular_velocity(θ, t, ω):
     """
-    values = [omega, t, alpha]
-    if values.count(None) > 1:
-        raise ValueError("Please provide values for two of the angular acceleration parameters.")
-    elif alpha is None:
-        return omega / t
-    elif omega is None:
-        return alpha * t
-    elif t is None:
-        return omega / alpha
-    return alpha
-
-
-def centripetal_acceleration(v, r, a):
-    """Compute centripetal acceleration relation: a = v**2 / r
-
-    Provide exactly one None to compute that value.
+    Function to calculate the angular velocity of an object given its angular displacement and time.
+    parameters:
+    θ(float): Angular displacement (radians)
+    t(float): Time (seconds)
+    ω(float): Angular velocity (radians per second)
+     ω = θ/t
     """
-    values = [v, r, a]
-    if values.count(None) > 1:
-        raise ValueError("Please provide values for two of the centripetal parameters.")
-    elif a is None:
-        return v ** 2 / r
-    elif v is None:
-        return (a * r) ** 0.5
+    values=[θ,t,ω].count(None)
+    if values > 1:
+        raise ValueError("Please provide values for both angular displacement (theta) and time (t).")
+    if ω is None:
+        return θ / t
+    elif θ is None:
+        return ω * t
+    elif t is None:
+        return θ / ω
+
+def angular_acceleration(ω, t, α):
+    """
+    Function to calculate the angular acceleration of an object given its angular velocity and time.
+    α = ω/t
+    parameters:
+    ω(float): Angular velocity (radians per second)
+    t(float): Time (seconds)
+    α(float): Angular acceleration (radians per second squared)
+    """
+    values=[ω,t,α].count(None)
+    if values > 1:
+        raise ValueError("Please provide values for both angular velocity (omega) and time (t).")
+    if α is None:
+        return ω / t
+    elif ω is None:
+        return α * t
+    elif t is None:
+        return ω / α
+
+def centripetal_acceleration(v, r,a):
+    """
+    Function to calculate the centripetal acceleration of an object given its velocity and radius of curvature.
+    a = v^2/r
+    parameters:
+    v(float):Velocity (m/s)
+    r(float):Radius of curvature (m)
+    a(float):Centripetal acceleration (m/s^2)
+    """
+    values=[v,r,a].count(None)
+    if values > 1:
+        raise ValueError("Please provide values for both velocity (v) and radius of curvature (r).")
+    if v is None:
+        return (r * a) ** 0.5
     elif r is None:
         return v ** 2 / a
-    return a
+    elif a is None:
+        return v ** 2 / r
 
-
-def momentum(m, v, p):
-    """p = m * v; compute missing one when None provided."""
-    values = [m, v, p]
-    if values.count(None) > 1:
-        raise ValueError("Please provide values for two of the momentum parameters.")
-    elif p is None:
-        return m * v
+def momentum(m,v,p):
+    """
+    function to calculate momentrum(p) of an object given mass and velocity.
+    p = m * v
+    parameters:
+    m(float): Mass of the object (kg)
+    v(float): Velocity of the object (m/s)
+    p(float): Momentum of the object (kg*m/s)
+    """
+    values=[m,v,p].count(None)
+    if values>1:
+        raise ValueError("Please provide values for both mass (m) and velocity (v).")
+    if p is None:
+        p = m*v
+        return p
     elif m is None:
-        return p / v
+        m = p/v
+        return m
     elif v is None:
-        return p / m
-    return p
+        v = p/m
+        return v
 
-
-def impulse(F, t, J):
-    """J = F * t; compute missing one when None provided."""
-    values = [F, t, J]
-    if values.count(None) > 1:
-        raise ValueError("Please provide values for two of the impulse parameters.")
-    elif J is None:
-        return F * t
+def impulse(F,t,J):
+    """
+    Function to calculate the impulse (J) of an object given the force (F) applied and the time (t) for which it is applied.
+    J = F * t
+    parameters:
+    F(float): Force applied (N)
+    t(float): Time for which the force is applied (s)
+    J(float): Impulse (N*s)
+    """
+    values=[F,t,J].count(None)
+    if values>1:
+        raise ValueError("Please provide values for both force (F) and time (t).")
+    if J is None:
+        J = F*t
+        return J
     elif F is None:
-        return J / t
+        F = J/t
+        return F
     elif t is None:
-        return J / F
-    return J
+        t = J/F
+        return t
 
-
-def Tangential_velocity(v, r, omega):
-    """v = r * omega; compute missing one when None provided."""
-    values = [v, r, omega]
-    if values.count(None) > 1:
-        raise ValueError("Please provide values for two of the tangential velocity parameters.")
-    elif v is None:
-        return r * omega
+def Tangential_velocity(v,r,ω):
+    """
+    Function to calculate the tangential velocity of an object given its angular velocity and radius of curvature.
+    v = r * ω
+    parameters:
+    v(float): Tangential velocity (m/s)
+    r(float): Radius of curvature (m)
+    ω(float): Angular velocity (radians per second)
+    """
+    values=[v,r,ω].count(None)
+    if values>1:
+        raise ValueError("Please provide values for both radius of curvature (r) and angular velocity (omega).")
+    if v is None:
+        v = r*ω
+        return v
     elif r is None:
-        return v / omega
-    elif omega is None:
-        return v / r
-    return v
+        r = v/ω
+        return r
+    elif ω is None:
+        ω = v/r
+        return ω
+
+## More functions will be added in future updates.   

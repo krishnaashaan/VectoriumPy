@@ -12,16 +12,16 @@ def Kinetic_energy(KE,m,v):
     m(float):Mass of the object (kg)
     v(float):Velocity of the object (m/s)
     '''
-    values = [KE,m,v].count("?")
+    values = [KE,m,v].count(None)
     if values > 1:
         raise ValueError("Please provide values for both mass (m) and velocity (v).")
-    if KE == "?":
+    if KE is None:
         KE = 0.5 * m * v**2
         return KE
-    elif m == "?":
+    elif m is None:
         m = 2 * KE / v**2
         return m
-    elif v == "?":
+    elif v is None:
         v = (2 * KE / m)**0.5
         return v
     
@@ -35,20 +35,20 @@ def Potential_energy(PE,m,g,h):
     g(float):Gravitational acceleration (m/s^2)
     h(float):Height of the object (m)
     """
-    values = [PE,m,g,h].count("?")
+    values = [PE,m,g,h].count(None)
     g = 9.8 
     if values > 1:
         raise ValueError("Please provide values for all parameters.")
-    if PE == "?":
+    if PE is None:
         PE = m * g * h
         return PE
-    elif m == "?":
+    elif m is None:
         m = PE / (g * h)
         return m
-    elif g == "?":
+    elif g is None:
         g = PE / (m * h)
         return g
-    elif h == "?":
+    elif h is None:
         h = PE / (m * g)
         return h
     
@@ -61,16 +61,16 @@ def Mechanical_energy(ME,KE,PE):
     KE(float):Kinetic energy (J)
     PE(float):Potential energy (J)
     """
-    values = [ME,KE,PE].count("?")
+    values = [ME,KE,PE].count(None)
     if values > 1:
         raise ValueError("Please provide values for both kinetic energy (KE) and potential energy (PE).")
-    if ME == "?":
+    if ME is None:
         ME = KE + PE
         return ME
-    elif KE == "?":
+    elif KE is None:
         KE = ME - PE
         return KE
-    elif PE == "?":
+    elif PE is None:
         PE = ME - KE
         return PE
     
@@ -79,19 +79,19 @@ def Work(F,d,θ,W):
     This function calculates work done (W) using Force(F), displacement(d) and angle of application(θ).
     W = F * d * cos(θ)"""
     
-    values = [F,d,θ,W].count("?")
+    values = [F,d,θ,W].count(None)
     if values > 1:
         raise ValueError("Please provide values for force (F), displacement (d), and angle of application (θ).")
-    if W == "?":
+    if W is None:
         W = F * d*np.cos(np.radians(θ))
         return W
-    elif F == "?":
+    elif F is None:
         F = W/(d * np.cos(np.radians(θ)))
         return F
-    elif d == "?":
+    elif d is None:
         d = W/(F * np.cos(np.radians(θ)))
         return d
-    elif θ == "?":
+    elif θ is None:
         θ = np.degrees(np.arccos(W/(F * d)))
         return θ
         
@@ -104,16 +104,16 @@ def Power(P,W,t):
     W(float):Work done (J)
     t(float):Time taken (s)
     """
-    values = [P,W,t].count("?")
+    values = [P,W,t].count(None)
     if values > 1:
         raise ValueError("Please provide values for both work done (W) and time taken (t).")
-    if P == "?":
+    if P is None:
         P = W/t
         return P
-    elif W == "?":
+    elif W is None:
         W = P*t
         return W
-    elif t == "?":
+    elif t is None:
         t = W/P
         return t
 

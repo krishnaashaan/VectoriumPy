@@ -13,16 +13,16 @@ def gravitational_force(m1,m2,r,F):
     F(float):Gravitational force between m1 and m2 (N)
     '''
     G = 6.67430e-11  # Gravitational constant
-    values = [m1, m2, r, F].count("?")
+    values = [m1, m2, r, F].count(None)
     if values > 1:
         raise ValueError("Please provide values for all but one parameter (m1, m2, r, F).")
-    if m1 == "?":
+    if m1 is None:
         return (F * r**2) / (G * m2)
-    elif m2 == "?":
+    elif m2 == None:
         return F * r**2 / (G * m1)
-    elif r == "?":
+    elif r == None:
         return (G * m1 * m2 / F) ** 0.5
-    elif F == "?":
+    elif F == None:
         return G * m1 * m2 / r**2
     
 def escape_velocity(v,m,r):
@@ -35,12 +35,12 @@ def escape_velocity(v,m,r):
     v(float):Escape velocity (m/s)
     '''
     G = 6.67430e-11  # Gravitational constant
-    values = [v,m,r].count("?")
+    values = [v,m,r].count(None)
     if values > 1:
         raise ValueError("Please provide values for all but one parameter (m, r, v).")
-    if m == "?":
+    if m == None:
         return v**2 * r / (2 * G)
-    elif r == "?":
+    elif r == None:
         return 2 * G * m / v**2
-    elif v == "?":
+    elif v == None:
         return np.sqrt(2 * G * m / r)

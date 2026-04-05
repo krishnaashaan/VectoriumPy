@@ -21,3 +21,6 @@ from .Thermodynamics import first_law_thermodynamics,entropy,enthalpy,Gibbs_free
 
 # Optics
 from .Optics import mirror_formula,lens_formula,magnification
+
+# Vectors 
+from .Vectors import Vectors

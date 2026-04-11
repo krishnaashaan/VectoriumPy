@@ -1,7 +1,11 @@
 # VectoriumPy
+![License](https://img.shields.io/github/license/krishnaashaan/vectoriumPy)
+![Physics](https://img.shields.io/badge/Physics-Powered-red)
+![NumPy](https://img.shields.io/badge/Numpy-Used-blue)
+
 
 <p align="center">
-  <img src="VectoriumPy/Logo/Vectorium_logo.png" width="200">
+  <img src="VectoriumPy/Logo/Vectorium_logo.png" width="500" alt="Vectorium logo">
 </p>
 
 VectoriumPy is a small, modular Python library of common physics formulas, helpers, and lightweight simulation utilities aimed at education, quick calculations, and small-scale experiments.
@@ -12,11 +16,11 @@ I plan to add way more functions in the future
 
 ## Quick summary
 
-- Lightweight functions for kinematics, forces, energy, electricity, waves, and a few example scripts.
+- Lightweight functions for kinematics, forces, energy, electricity, waves, and example scripts.
 - Well-suited for notebooks, teaching demos, and short scripts — not a full physics engine.
 
 ## Install
- IT should be avaliable to install in a couple of Months
+IT should be avaliable to install in a couple of Months
 Install editable from source:
 
 ```bash
@@ -30,22 +34,23 @@ Recommended: create and activate a virtual environment before installing.
 Run the example scripts or import modules from the package. Example from a Python REPL:
 
 ```python
-from VectoriumPy.Kinematics.motion import  avg_velocity
-avg_v =  avg_velocity(50,50)
+from vectoriumPy.Kinematics.motion import avg_velocity
+avg_v = avg_velocity(50, 50)
 print(avg_v)
 ```
 
-See [src/VectoriumPy/examples/examples.py](src/VectoriumPy/examples/examples.py) for runnable examples.
+See [src/vectoriumPy/examples/examples.py](src/vectoriumPy/examples/examples.py) for runnable examples.
 
 ## Project layout
 
-- [src/VectoriumPy/](src/VectoriumPy/)
+- [src/vectoriumPy/](src/vectoriumPy/)
   - `Kinematics/` — motion and projectile utilities
   - `Force/` — force-related formulas (gravity, friction, centripetal)
   - `Energy/` — kinetic, potential and mechanical energy helpers
   - `Electricity/` — circuits, capacitance, electric field helpers
   - `Waves/` — basic light and sound calculations
-  - `Thermodynamics/`- Calculations related to thermodynamics
+  - `Thermodynamics/` — calculations related to thermodynamics
+  - `Magnetism/`- calculations related to magnetic fields 
   - `examples/` — small runnable examples showing common usage
   - `Tests/` — unit tests for core functions
 
@@ -62,7 +67,7 @@ python -m pytest -q
 Contributions are welcome. Suggested workflow:
 
 1. Fork the repo and create a feature branch.
-2. Add tests for new functions under [src/VectoriumPy/Tests](src/VectoriumPy/Tests).
+2. Add tests for new functions under [src/vectoriumPy/Tests](src/vectoriumPy/Tests).
 3. Open a PR with a clear description of changes.
 
 ## License
@@ -73,16 +78,15 @@ See [LICENSE](LICENSE) for license terms.
 
 This project contains a set of focused modules. Brief descriptions of the main files:
 
-- [VectoriumPy/src/vectoriumPy/Kinematics/motion.py](VectoriumPy/src/vectoriumPy/Kinematics/motion.py): Common kinematics helpers (velocity, acceleration, displacement calculations).
-- [VectoriumPy/src/VectoriumPy/Kinematics/projectile_motion.py](VectoriumPy/src/VectoriumPy/Kinematics/projectile_motion.py): Projectile motion utilities (range, time of flight, max height).
-- [VectoriumPy/src/VectoriumPy/Force/Force.py](VectoriumPy/src/VectoriumPy/Force/Force.py): Force calculations (gravitational force, friction, centripetal force).
-- [VectoriumPy/src/VectoriumPy/Energy/energy.py](VectoriumPy/src/VectoriumPy/Energy/energy.py): Energy-related helpers (kinetic, potential, mechanical energy, work, power).
-- [VectoriumPy/src/VectoriumPy/Electricity/electricity.py](VectoriumPy/src/VectoriumPy/Electricity/electricity.py): Basic electricity formulas (Ohm's law, power, energy in circuits).
-- [VectoriumPy/src/VectoriumPy/Electricity/circuit.py](VectoriumPy/src/VectoriumPy/Electricity/circuit.py): Series/parallel resistance and simple circuit helpers.
-- [VectoriumPy/src/VectoriumPy/Electricity/electric_fields.py](VectoriumPy/src/VectoriumPy/Electricity/electric_fields.py): Electric field and point-charge helpers.
-- [VectoriumPy/src/VectoriumPy/Waves/light.py](VectoriumPy/src/VectoriumPy/Waves/light.py): Light/wave optics helpers (wavelength, frequency relations).
-- [VectoriumPy/src/VectoriumPy/Waves/sound.py](VectoriumPy/src/VectoriumPy/Waves/sound.py): Sound-wave calculations (speed, Doppler shift basics).
-- [VectoriumPy/src/VectoriumPy/Thermodynamics/Thermodynamics.py](VectoriumPy/src/VectoriumPy/Thermodynamics/Thermodynamics.py): Calculations related to Thermodynamics(- First Law of Thermodynamics
-- Entropy, Enthalpy, Gibbs free energy, Helmholtz Free Energy, Ideal Gas Law)
-- [src/VectoriumPy/examples/examples.py](src/VectoriumPy/examples/examples.py): Small example scripts demonstrating library usage.
-- [src/VectoriumPy/Tests/](src/VectoriumPy/Tests/): Unit tests covering core functions.
+- [src/vectoriumPy/Kinematics/motion.py](src/vectoriumPy/Kinematics/motion.py): Common kinematics helpers (velocity, acceleration, displacement calculations).
+- [src/vectoriumPy/Kinematics/projectile_motion.py](src/vectoriumPy/Kinematics/projectile_motion.py): Projectile motion utilities (range, time of flight, max height).
+- [src/vectoriumPy/Force/Force.py](src/vectoriumPy/Force/Force.py): Force calculations (gravitational force, friction, centripetal force).
+- [src/vectoriumPy/Energy/energy.py](src/vectoriumPy/Energy/energy.py): Energy-related helpers (kinetic, potential, mechanical energy, work, power).
+- [src/vectoriumPy/Electricity/electricity.py](src/vectoriumPy/Electricity/electricity.py): Basic electricity formulas (Ohm's law, power, energy in circuits).
+- [src/vectoriumPy/Electricity/circuit.py](src/vectoriumPy/Electricity/circuit.py): Series/parallel resistance and simple circuit helpers.
+- [src/vectoriumPy/Electricity/electric_fields.py](src/vectoriumPy/Electricity/electric_fields.py): Electric field and point-charge helpers.
+- [src/vectoriumPy/Waves/light.py](src/vectoriumPy/Waves/light.py): Light/wave optics helpers (wavelength, frequency relations).
+- [src/vectoriumPy/Waves/sound.py](src/vectoriumPy/Waves/sound.py): Sound-wave calculations (speed, Doppler shift basics).
+- [src/vectoriumPy/Thermodynamics/Thermodynamics.py](src/vectoriumPy/Thermodynamics/Thermodynamics.py): Calculations related to thermodynamics (First Law, Entropy, Enthalpy, Gibbs, Helmholtz, Ideal Gas Law).
+- [src/vectoriumPy/examples/examples.py](src/vectoriumPy/examples/examples.py): Small example scripts demonstrating library usage.
+- [src/vectoriumPy/Tests/](src/vectoriumPy/Tests/): Unit tests covering core functions.

@@ -1,1 +1,1 @@
-from .magnetism import magnetic_force,magnetic_flux
+from .magnetism import magnetic_force,magnetic_flux,amperes_law

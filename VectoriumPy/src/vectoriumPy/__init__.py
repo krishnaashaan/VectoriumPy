@@ -26,4 +26,4 @@ from .Optics import mirror_formula,lens_formula,magnification
 from .Vectors import Vectors
 
 # Magnetism
-from .Magnetism import magnetic_force,magnetic_flux
+from .Magnetism import magnetic_force,magnetic_flux,amperes_law
